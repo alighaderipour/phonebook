@@ -1,0 +1,8 @@
+PUT http://127.0.0.1:5000/api/phones/5
+Content-Type: application/json
+
+{
+    "PhoneNumber": "1234567890",
+    "PhoneTypeID": 1,
+    "JobID": 1
+}

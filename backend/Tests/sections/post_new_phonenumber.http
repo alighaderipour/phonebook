@@ -1,0 +1,8 @@
+POST http://127.0.0.1:5000/api/phones/add/phonenumber
+Content-Type: application/json
+
+{
+  "JobID": 2,
+  "PhoneNumber": "+1-555-222-4444",
+  "PhoneTypeID": 1
+}
