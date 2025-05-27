@@ -9,6 +9,9 @@
   type="text"
   placeholder="جستجوی نام، شغل، شماره تلفن یا بخش..."
   class="input-field"
+  lang="fa"
+  dir="rtl"
+  style="text-align: right"
 />
       <button @click="performSearch" class="btn btn-primary">جستجو</button>
     </div>

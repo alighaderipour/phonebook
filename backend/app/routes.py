@@ -635,6 +635,18 @@ def login():
 
 from sqlalchemy import or_, func
 
+# Add this normalization function
+def normalize_persian(text):
+    if not text:
+        return text
+    replacements = {
+        '\u064a': '\u06cc',  # Arabic Yeh → Persian Yeh
+        '\u0643': '\u06a9',  # Arabic Kaf → Persian Kaf
+    }
+    for src, target in replacements.items():
+        text = text.replace(src, target)
+    return text
+
 @api_blueprint.route('/search', methods=['GET'])
 def search():
     import re
@@ -643,11 +655,13 @@ def search():
     if not query:
         return jsonify([])
 
-    # Normalize query: convert tabs/multiple spaces to a single space
+    # Normalize whitespace
     query = re.sub(r'\s+', ' ', query)
 
+    # 🔧 Normalize Arabic/Persian variants in query
+    query = normalize_persian(query)
+
     try:
-        # Concatenated name expressions
         full_name_1 = func.concat(Users.FirstName, ' ', Users.LastName)
         full_name_2 = func.concat(Users.LastName, ' ', Users.FirstName)
 
@@ -695,6 +709,3 @@ def search():
         return jsonify(result)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
-
-
