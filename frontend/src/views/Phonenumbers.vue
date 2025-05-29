@@ -209,7 +209,7 @@ export default {
           PhoneTypeID: this.editForm.PhoneTypeID || null,
           Mobile: this.editForm.Mobile
         };
-        await axios.put(`http://192.168.80.202:5000/api/phones/${this.editForm.PhoneID}`, payload);
+        await axios.put(`http://192.168.8.202:5000/api/phones/${this.editForm.PhoneID}`, payload);
         this.closeEditModal();
         this.fetchPhonenumbers();
       } catch (error) {
@@ -220,7 +220,7 @@ export default {
       if (!confirm("Are you sure you want to delete this phone number?")) return;
 
       try {
-        await axios.delete(`http://192.168.80.202:5000/api/phones/${phoneId}`);
+        await axios.delete(`http://192.168.8.202:5000/api/phones/${phoneId}`);
         this.phonenumbers = this.phonenumbers.filter((p) => p.PhoneID !== phoneId);
       } catch (error) {
         this.error = "Failed to delete phone number: " + (error.response?.data?.error || error.message);
@@ -246,7 +246,7 @@ export default {
           PhoneTypeID: this.newForm.PhoneTypeID || null,
           Mobile: this.newForm.Mobile
         };
-        await axios.post("http://192.168.80.202:5000/api/phones/add/phonenumber", payload);
+        await axios.post("http://192.168.8.202:5000/api/phones/add/phonenumber", payload);
         this.closeAddModal();
         this.fetchPhonenumbers();
       } catch (error) {
