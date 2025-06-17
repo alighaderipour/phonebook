@@ -1,0 +1,3 @@
+### Search users by keyword (e.g., name, section, or job)
+GET http://127.0.0.1:5000/search?q=+1-555-444-5555
+Accept: application/json
